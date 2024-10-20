@@ -1,0 +1,14 @@
+kind: Kustomization
+
+resources:
+  - db/1-db-pv.yaml
+  - db/2-db-pvc.yaml
+  - db/3-db.yaml
+  - db/4-db-service.yaml
+
+configMapGenerator:
+  - name: postgres-config
+    literals:
+      - POSTGRES_DB=vehicle_quotes
+      - POSTGRES_USER=vehicle_quotes
+      - POSTGRES_PASSWORD=password
