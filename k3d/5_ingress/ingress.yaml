@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-deploy
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths: 
+      - path: /  #INGRESS ENDPOINT (WITH LOADBALANCER PORT (CHECK CLUSTER CREATION COMMAND TO FIND THE LOAD BALANCER PORT))
+        pathType: Prefix
+        backend:
+          service:
+            name: app-deploy #SERVICE NAME
+            port:
+              number: 9091 #SERVICE PORT 
